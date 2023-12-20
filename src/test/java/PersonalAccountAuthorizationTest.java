@@ -1,4 +1,8 @@
+import api.client.BaseTest;
+import api.client.user.body.User;
 import constants.GeckoWebDriverPath;
+import io.qameta.allure.Description;
+import io.qameta.allure.junit4.DisplayName;
 import object.page.*;
 import org.junit.After;
 import org.junit.Assert;
@@ -15,11 +19,17 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 import static constants.URL.*;
-import static object.page.RegisterPage.*;
 
 public class PersonalAccountAuthorizationTest {
     private WebDriver driver;
     private WebDriverWait wait;
+    private User user;
+    private HomePage hp;
+    private LoginPage lp;
+    private RegisterPage rp;
+    private ForgotPasswordPage fsp;
+    private PersonalAccountPage pap;
+    private HeaderSharedElements hse;
 
     @Before
 //    public void startBrowser() {
@@ -34,36 +44,41 @@ public class PersonalAccountAuthorizationTest {
         options.addArguments();
         driver = new ChromeDriver(options);
         wait = new WebDriverWait(driver, Duration.ofMillis(3000));
+        hp = new HomePage(driver);
+        lp = new LoginPage(driver);
+        rp = new RegisterPage(driver);
+        fsp = new ForgotPasswordPage(driver);
+        pap = new PersonalAccountPage(driver);
+        hse = new HeaderSharedElements(driver);
+        user = new User();
         driver.get(BASE_URL);
+        BaseTest.createUser(user);
     }
 
     @Test
-    public void AuthorizeBySignInButtonTest() {
-        HomePage hp = new HomePage(driver);
+    @DisplayName("Авторизация по кнопке \"Войти в аккаунт\"")
+    @Description("Авторизация по кнопке \"Войти в аккаунт\"")
+    public void authorizeBySignInButtonTest() {
         hp.clickSignInButton();
-
-        LoginPage lp = new LoginPage(driver);
         lp.authorizeTestUser();
 
         Assert.assertTrue(hp.createOrderButtonIsVisible());
     }
 
     @Test
-    public void AuthorizeByPersonalAccountButtonTest() {
-        HomePage hp = new HomePage(driver);
+    @DisplayName("Авторизация по кнопке \"Личный кабинет\"")
+    @Description("Авторизация по кнопке \"Личный кабинет\"")
+    public void authorizeByPersonalAccountButtonTest() {
         hp.clickPersonalAccountButton();
-
-        LoginPage lp = new LoginPage(driver);
         lp.authorizeTestUser();
 
         Assert.assertTrue(hp.createOrderButtonIsVisible());
     }
 
     @Test
-    public void AuthorizeFromRegisterPageTest() {
-        RegisterPage rp = new RegisterPage(driver);
-        LoginPage lp = new LoginPage(driver);
-        HomePage hp = new HomePage(driver);
+    @DisplayName("Авторизация со странички регистрации")
+    @Description("Авторизация со странички регистрации")
+    public void authorizeFromRegisterPageTest() {
         driver.get(REGISTER_PAGE);
 
         rp.clickSignInButton();
@@ -73,10 +88,9 @@ public class PersonalAccountAuthorizationTest {
     }
 
     @Test
-    public void AuthorizeFromForgotPasswordPageTest() {
-        ForgotPasswordPage fsp = new ForgotPasswordPage(driver);
-        LoginPage lp = new LoginPage(driver);
-        HomePage hp = new HomePage(driver);
+    @DisplayName("Авторизация со странички восстановления пароля")
+    @Description("Авторизация со странички восстановления пароля")
+    public void authorizeFromForgotPasswordPageTest() {
         driver.get(FORGOT_PASSWORD_PAGE);
 
         fsp.clickSignInButton();
@@ -86,11 +100,9 @@ public class PersonalAccountAuthorizationTest {
     }
 
     @Test
+    @DisplayName("Выход из личного кабинета по кнопке \"Выход\"")
+    @Description("Выходим из личного кабинета")
     public void logoutTest() {
-        HomePage hp = new HomePage(driver);
-        LoginPage lp = new LoginPage(driver);
-        PersonalAccountPage pap = new PersonalAccountPage(driver);
-        HeaderSharedElements hse = new HeaderSharedElements(driver);
 
         hp.clickPersonalAccountButton();
         lp.authorizeTestUser();
@@ -105,5 +117,6 @@ public class PersonalAccountAuthorizationTest {
     @After
     public void teardown() {
         driver.quit();
+        BaseTest.deleteUser(user);
     }
 }

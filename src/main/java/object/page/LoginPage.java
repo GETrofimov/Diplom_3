@@ -1,11 +1,11 @@
 package object.page;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
-import static constants.Credentials.EMAIL;
-import static constants.Credentials.PASSWORD;
+import static api.client.user.constants.Credentials.EMAIL;
+import static api.client.user.constants.Credentials.PASSWORD;
 
 public class LoginPage {
     private static WebDriver driver;
@@ -19,25 +19,33 @@ public class LoginPage {
     private static By fieldEmail = By.xpath("(//input[@name='name'])[1]");
     private static By fieldPassword = By.xpath("(//input[@name='Пароль'])[1]");
 
+    @Step("Нажать на кнопку \"Зарегистрироваться\"")
     public static void clickRegisterButton() {
         driver.findElement(registerButton).click();
     }
 
+    @Step("Нажать на кнопку \"Войти\"")
+    public static void clickSignInButton() {
+        driver.findElement(signInButton).click();
+    }
+
+    @Step("Заполнить поле \"Email\"")
     public static void setFieldEmail(String email) {
-        driver.findElement(fieldEmail).click();
         driver.findElement(fieldEmail).sendKeys(email);
     }
 
+    @Step("Заполнить поле \"Пароль\"")
     public static void setFieldPassword(String password) {
-        driver.findElement(fieldPassword).click();
         driver.findElement(fieldPassword).sendKeys(password);
     }
 
-    public static void authorizeTestUser() {
-        driver.findElement(fieldEmail).sendKeys(EMAIL);
-        driver.findElement(fieldPassword).sendKeys(PASSWORD);
-        driver.findElement(signInButton).click();
+    @Step("Авторизоваться под тестовым пользователем")
+    public void authorizeTestUser() {
+        setFieldEmail(EMAIL);
+        setFieldPassword(PASSWORD);
+        clickSignInButton();
     }
+
 
     public static By getFieldEmail() {
         return fieldEmail;

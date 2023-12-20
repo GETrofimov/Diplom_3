@@ -1,12 +1,13 @@
 package steps;
 
+import io.qameta.allure.Step;
 import object.page.LoginPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-import static constants.Credentials.EMAIL;
-import static constants.Credentials.PASSWORD;
+import static api.client.user.constants.Credentials.EMAIL;
+import static api.client.user.constants.Credentials.PASSWORD;
 import static constants.URL.BASE_URL;
 
 public class SharedSteps {
@@ -16,6 +17,7 @@ public class SharedSteps {
         this.driver = driver;
     }
 
+    @Step("Запуск теста в Chrome")
     public static void startChromeBrowser() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--no-sandbox", "--headless", "--disable-dev-shm-usage");
@@ -23,6 +25,7 @@ public class SharedSteps {
         driver.get(BASE_URL);
     }
 
+    @Step("Авторизация тестового пользователя")
     public static void authorizeTestUser() {
         LoginPage lp = new LoginPage(driver);
         driver.findElement(lp.getFieldEmail()).sendKeys(EMAIL);

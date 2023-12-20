@@ -1,3 +1,7 @@
+import api.client.BaseTest;
+import api.client.user.body.User;
+import io.qameta.allure.Description;
+import io.qameta.allure.junit4.DisplayName;
 import object.page.RegisterPage;
 import org.junit.After;
 import org.junit.Assert;
@@ -19,6 +23,8 @@ import static object.page.RegisterPage.passwordValidationWebElement;
 
 public class RegisterTest {
     private WebDriver driver;
+    private User user;
+    private RegisterPage rp;
     @Before
 //    public void startBrowser() {
 //        System.setProperty("webdriver.gecko.driver", GeckoWebDriverPath.PATH);
@@ -31,14 +37,17 @@ public class RegisterTest {
         ChromeOptions options = new ChromeOptions();
         options.addArguments();
         driver = new ChromeDriver(options);
+        rp = new RegisterPage(driver);
+        user = new User();
         driver.get(REGISTER_PAGE);
     }
 
     @Test
+    @DisplayName("Регистрация нового пользователя")
+    @Description("Регистрация нового пользователя")
     public void registerTest() {
-        RegisterPage rp = new RegisterPage(driver);
         rp.waitForLoaderDisappear();
-        rp.fillRegisterFields();
+        rp.fillRegisterFields(user);
         rp.clickRegisterButton();
         new WebDriverWait(driver, Duration.ofMillis(5000)).until(ExpectedConditions.urlContains(LOGIN_PAGE));
         String actualURL = driver.getCurrentUrl();
@@ -46,9 +55,10 @@ public class RegisterTest {
     }
 
     @Test
+    @DisplayName("Регистрация нового пользователя с паролем меньше 6")
+    @Description("Регистрация нового пользователя с паролем меньше 6")
     public void registerInvalidPasswordTest() {
-        RegisterPage rp = new RegisterPage(driver);
-        rp.fillRegisterFieldsInvalidPassword();
+        rp.fillRegisterFieldsInvalidPassword(user);
         rp.clickRegisterButton();
         Assert.assertTrue(passwordValidationWebElement().isDisplayed());
     }
@@ -56,5 +66,6 @@ public class RegisterTest {
     @After
     public void teardown() {
         driver.quit();
+        BaseTest.deleteUser(user);
     }
 }

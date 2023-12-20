@@ -4,8 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a155ca6-5249-4c86-b59c-ba278a162957" name="Changes" comment="">
+    <list default="true" id="0a155ca6-5249-4c86-b59c-ba278a162957" name="Changes" comment="Update gitignore and add some tests">
+      <change afterPath="$PROJECT_DIR$/src/main/java/api/client/BaseTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/api/client/constants/BaseParams.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/api/client/constants/StatusCodes.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/api/client/user/UserClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/api/client/user/body/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/api/client/user/constants/Credentials.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/api/client/user/constants/Routes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/constants/Credentials.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/object/page/ForgotPasswordPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/object/page/ForgotPasswordPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/object/page/HeaderSharedElements.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/object/page/HeaderSharedElements.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/object/page/HomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/object/page/HomePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/object/page/LoginPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/object/page/LoginPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/object/page/PersonalAccountPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/object/page/PersonalAccountPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/object/page/RegisterPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/object/page/RegisterPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/steps/SharedSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/steps/SharedSteps.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/NavigationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/NavigationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/PersonalAccountAuthorizationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/PersonalAccountAuthorizationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/RegisterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/RegisterTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,9 +37,9 @@
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="2" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 1
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="2Zi3XY0QqJZLm7ku0ErJJzq5OM0" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -31,9 +50,52 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master"
+    "git-widget-placeholder": "develop3",
+    "last_opened_file_path": "G:/Programming/Dilpom/Diplom_3/src/main/java/api/client"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="G:\Programming\Dilpom\Diplom_3\src\main\java\api\client" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="api.client.user" />
+      <recent name="api.client" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn allure:serve" />
+      <command value="mvn clean test" />
+    </option>
+  </component>
+  <component name="RunManager" selected="JUnit.NavigationTest.openPersonalAccountByPersonalAccountButtonTest">
+    <configuration name="NavigationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Diplom_3" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="NavigationTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NavigationTest.openPersonalAccountByPersonalAccountButtonTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Diplom_3" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="NavigationTest" />
+      <option name="METHOD_NAME" value="openPersonalAccountByPersonalAccountButtonTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.NavigationTest.openPersonalAccountByPersonalAccountButtonTest" />
+        <item itemvalue="JUnit.NavigationTest" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -44,5 +106,32 @@
       <updated>1702891115084</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="develop3" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Update gitignore and add some tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update gitignore and add some tests" />
   </component>
 </project>

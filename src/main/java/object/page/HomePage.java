@@ -1,8 +1,8 @@
 package object.page;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -10,7 +10,7 @@ import java.time.Duration;
 
 
 public class HomePage {
-    private static WebDriver driver;
+    private WebDriver driver;
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
@@ -27,45 +27,50 @@ public class HomePage {
     private static By bunsButton = By.xpath("(//span[contains(text(),'Булки')])[1]");
     private static By fillingButton = By.xpath("(//span[contains(text(),'Начинки')])[1]");
 
-    public static void waitForLoaderDisappear() {
-        new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.invisibilityOfElementLocated(loader));
-    }
-
-    public static void clickSignInButton() {
+    @Step("Нажать на кнопку \"Войти в акаунт\"")
+    public void clickSignInButton() {
         driver.findElement(signInButton).click();
     }
-    public static void clickPersonalAccountButton() {
+
+    @Step("Нажать на кнопку \"Личный кабинет\"")
+    public void clickPersonalAccountButton() {
         driver.findElement(personalAccountButton).click();
     }
-    public static void clickSauceButton() {
+
+    @Step("Нажать на кнопку \"Соусы\"")
+    public void clickSauceButton() {
         driver.findElement(sauceButton).click();
     }
-    public static void clickBunsButton() {
+
+    @Step("Нажать на кнопку \"Булки\"")
+    public void clickBunsButton() {
         driver.findElement(bunsButton).click();
     }
-    public static void clickFillingButton() {
+
+    @Step("Нажать на кнопку \"Начинки\"")
+    public void clickFillingButton() {
         driver.findElement(fillingButton).click();
     }
 
-    public static boolean createOrderButtonIsVisible() {
+    public boolean createOrderButtonIsVisible() {
         new WebDriverWait(driver, Duration.ofSeconds(3))
                 .until(ExpectedConditions.visibilityOfElementLocated(createOrderButtonSelector));
         return driver.findElement(createOrderButtonSelector).isDisplayed();
     }
 
-    public static boolean sauceOptionIsVisible() {
+    public boolean sauceOptionIsVisible() {
         new WebDriverWait(driver, Duration.ofSeconds(3))
                 .until(ExpectedConditions.visibilityOfElementLocated(sauceOption));
         return driver.findElement(sauceOption).isDisplayed();
     }
 
-    public static boolean bunsOptionIsVisible() {
+    public boolean bunsOptionIsVisible() {
         new WebDriverWait(driver, Duration.ofSeconds(3))
                 .until(ExpectedConditions.visibilityOfElementLocated(bunsOption));
         return driver.findElement(bunsOption).isDisplayed();
     }
 
-    public static boolean fillingOptionIsVisible() {
+    public boolean fillingOptionIsVisible() {
         new WebDriverWait(driver, Duration.ofSeconds(3))
                 .until(ExpectedConditions.visibilityOfElementLocated(fillingOption));
         return driver.findElement(fillingOption).isDisplayed();
