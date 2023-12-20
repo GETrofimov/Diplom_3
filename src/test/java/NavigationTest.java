@@ -27,13 +27,6 @@ public class NavigationTest {
     private User user = new User();
 
     @Before
-//    public void startBrowser() {
-//        System.setProperty("webdriver.gecko.driver", GeckoWebDriverPath.PATH);
-//        driver = new FirefoxDriver();
-//        driver.get(BASE_URL);
-//
-//    }
-
     public void setUp() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments();
@@ -45,6 +38,8 @@ public class NavigationTest {
         hp = new HomePage(driver);
         BaseTest.createUser(user);
         ss.authorizeTestUser();
+        System.out.println(user.getName());
+        System.out.println(user.getAccessToken());
     }
 
     @Test

@@ -1,6 +1,5 @@
 import api.client.BaseTest;
 import api.client.user.body.User;
-import constants.GeckoWebDriverPath;
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import object.page.*;
@@ -11,8 +10,6 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -32,13 +29,6 @@ public class PersonalAccountAuthorizationTest {
     private HeaderSharedElements hse;
 
     @Before
-//    public void startBrowser() {
-//        System.setProperty("webdriver.gecko.driver", GeckoWebDriverPath.PATH);
-//        driver = new FirefoxDriver();
-//        driver.get(BASE_URL);
-//
-//    }
-
     public void setUp(){
         ChromeOptions options = new ChromeOptions();
         options.addArguments();
