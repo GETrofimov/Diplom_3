@@ -1,4 +1,4 @@
-import api.client.BaseTest;
+import api.client.SharedApiSteps;
 import api.client.user.body.User;
 import com.github.javafaker.Faker;
 import io.qameta.allure.Description;
@@ -9,10 +9,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static constants.URL.REGISTER_PAGE;
 import static object.page.RegisterPage.passwordValidationWebElement;
@@ -24,21 +20,12 @@ public class RegisterValidationTest {
     private static Faker faker = new Faker();
 
     @Before
-//    public void startBrowser() {
-//        System.setProperty("webdriver.gecko.driver", GeckoWebDriverPath.PATH);
-//        driver = new FirefoxDriver();
-//        driver.get(REGISTER_PAGE);
-//
-//    }
-
     public void setUp(){
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments();
-        driver = new ChromeDriver(options);
+        driver = WebDriverFactory.getWebDriver("chrome");
         rp = new RegisterPage(driver);
         user = new User();
 
-        BaseTest.setUp();
+        SharedApiSteps.setUp();
 
         //Присваиваем данные, чтобы в дальнейшем удалить юзера, если валидация провалена и создастся экземпляр
         user.setName(faker.name().fullName());
@@ -63,10 +50,10 @@ public class RegisterValidationTest {
         driver.quit();
 
         //Условие для удаления юзера
-        String token = BaseTest.acquireToken(user);
+        String token = SharedApiSteps.acquireToken(user);
         if(token != null) {
             user.setAccessToken(token);
-            BaseTest.deleteUser(user);
+            SharedApiSteps.deleteUser(user);
         }
     }
 }

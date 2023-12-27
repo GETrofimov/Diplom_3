@@ -14,7 +14,7 @@ import static api.client.user.constants.Routes.AUTH_USER;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.equalTo;
 
-public class BaseTest {
+public class SharedApiSteps {
     @Step("Set URL for test")
     public static void setUp() {
         RestAssured.baseURI = BaseParams.BASE_URI;

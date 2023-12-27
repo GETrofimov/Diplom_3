@@ -1,4 +1,4 @@
-import api.client.BaseTest;
+import api.client.SharedApiSteps;
 import api.client.user.body.User;
 import com.github.javafaker.Faker;
 import io.qameta.allure.Description;
@@ -9,10 +9,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -28,17 +24,8 @@ public class RegisterTest {
     private static Faker faker = new Faker();
 
     @Before
-//    public void startBrowser() {
-//        System.setProperty("webdriver.gecko.driver", GeckoWebDriverPath.PATH);
-//        driver = new FirefoxDriver();
-//        driver.get(REGISTER_PAGE);
-//
-//    }
-
     public void setUp(){
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments();
-        driver = new ChromeDriver(options);
+        driver = WebDriverFactory.getWebDriver("chrome");
         rp = new RegisterPage(driver);
         user = new User();
 
@@ -46,7 +33,7 @@ public class RegisterTest {
         user.setEmail(faker.internet().emailAddress());
         user.setPassword(faker.internet().password(6,9));
 
-        BaseTest.setUp();
+        SharedApiSteps.setUp();
 
         driver.get(REGISTER_PAGE);
     }
@@ -68,10 +55,10 @@ public class RegisterTest {
         driver.quit();
 
         //Условие, чтобы удалить пользователя
-        String token = BaseTest.acquireToken(user);
+        String token = SharedApiSteps.acquireToken(user);
         if(token != null) {
             user.setAccessToken(token);
-            BaseTest.deleteUser(user);
+            SharedApiSteps.deleteUser(user);
         }
     }
 }

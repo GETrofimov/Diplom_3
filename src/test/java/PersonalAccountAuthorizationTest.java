@@ -1,4 +1,4 @@
-import api.client.BaseTest;
+import api.client.SharedApiSteps;
 import api.client.user.body.User;
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
@@ -8,8 +8,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -31,9 +29,7 @@ public class PersonalAccountAuthorizationTest {
 
     @Before
     public void setUp(){
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments();
-        driver = new ChromeDriver(options);
+        driver = WebDriverFactory.getWebDriver("chrome");
         wait = new WebDriverWait(driver, Duration.ofMillis(3000));
         hp = new HomePage(driver);
         lp = new LoginPage(driver);
@@ -47,8 +43,8 @@ public class PersonalAccountAuthorizationTest {
         user.setEmail(EMAIL);
         user.setPassword(PASSWORD);
 
-        BaseTest.setUp();
-        BaseTest.createUser(user);
+        SharedApiSteps.setUp();
+        SharedApiSteps.createUser(user);
 
         driver.get(BASE_URL);
     }
@@ -115,7 +111,7 @@ public class PersonalAccountAuthorizationTest {
     @After
     public void teardown() {
         driver.quit();
-        user.setAccessToken(BaseTest.acquireToken(user));
-        BaseTest.deleteUser(user);
+        user.setAccessToken(SharedApiSteps.acquireToken(user));
+        SharedApiSteps.deleteUser(user);
     }
 }
