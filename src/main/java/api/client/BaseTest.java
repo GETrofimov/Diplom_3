@@ -6,9 +6,12 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import api.client.user.body.User;
 
+import static api.client.constants.BaseParams.BASE_CONTENT_TYPE_HEADER;
+import static api.client.constants.BaseParams.BASE_CONTENT_TYPE_VALUE;
 import static api.client.constants.StatusCodes.*;
 import static api.client.user.UserClient.*;
-import static api.client.user.constants.Credentials.*;
+import static api.client.user.constants.Routes.AUTH_USER;
+import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 public class BaseTest {
@@ -28,10 +31,20 @@ public class BaseTest {
 
     @Step("Создание тестового пользователя")
     public static void createUser(User user) {
-        user.setEmail(EMAIL);
-        user.setName(NAME);
-        user.setPassword(PASSWORD);
         Response create = sendCreateUserRequest(user);
-        user.setAccessToken(create.then().extract().body().path("accessToken"));
+        create.then().assertThat().statusCode(OK);
+    }
+
+    @Step
+    public static String acquireToken(User body) {
+        Response response =
+                given()
+                        .header(BASE_CONTENT_TYPE_HEADER, BASE_CONTENT_TYPE_VALUE)
+                        .and()
+                        .body(body)
+                        .when()
+                        .post(AUTH_USER);
+        String token = response.then().extract().body().path("accessToken");
+        return token;
     }
 }

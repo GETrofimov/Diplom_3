@@ -42,17 +42,10 @@ public class RegisterPage {
     }
 
     @Step("Заполнение кредов")
-    public void fillRegisterFields(User user) {
-        setFieldName(NAME);
-        setFieldEmail(EMAIL);
-        setFieldPassword(faker.internet().password(6, 9));
-    }
-
-    @Step("Заполнение кредов с неверной длинной пароля")
-    public void fillRegisterFieldsInvalidPassword(User user) {
-        setFieldName(NAME);
-        setFieldEmail(EMAIL);
-        setFieldPassword(faker.internet().password(5,6));
+    public void fillRegisterFields(String name, String email, String password) {
+        setFieldName(name);
+        setFieldEmail(email);
+        setFieldPassword(password);
     }
 
     @Step("Заполнить поле \"Имя\"")

@@ -16,6 +16,7 @@ import steps.SharedSteps;
 
 import java.time.Duration;
 
+import static api.client.user.constants.Credentials.*;
 import static constants.URL.*;
 
 public class NavigationTest {
@@ -24,7 +25,7 @@ public class NavigationTest {
     private HeaderSharedElements hse;
     private SharedSteps ss;
     private HomePage hp;
-    private User user = new User();
+    private User user;
 
     @Before
     public void setUp() {
@@ -32,14 +33,20 @@ public class NavigationTest {
         options.addArguments();
         driver = new ChromeDriver(options);
         wait = new WebDriverWait(driver, Duration.ofMillis(3000));
-        driver.get(LOGIN_PAGE);
         ss = new SharedSteps(driver);
         hse = new HeaderSharedElements(driver);
         hp = new HomePage(driver);
+        user = new User();
+
+        driver.get(LOGIN_PAGE);
+
+        user.setName(NAME);
+        user.setEmail(EMAIL);
+        user.setPassword(PASSWORD);
+
+        BaseTest.setUp();
         BaseTest.createUser(user);
         ss.authorizeTestUser();
-        System.out.println(user.getName());
-        System.out.println(user.getAccessToken());
     }
 
     @Test
@@ -112,6 +119,7 @@ public class NavigationTest {
     @After
     public void teardown() {
         driver.quit();
+        user.setAccessToken(BaseTest.acquireToken(user));
         BaseTest.deleteUser(user);
     }
 }

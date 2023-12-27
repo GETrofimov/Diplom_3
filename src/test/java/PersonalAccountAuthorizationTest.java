@@ -15,6 +15,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+import static api.client.user.constants.Credentials.*;
 import static constants.URL.*;
 
 public class PersonalAccountAuthorizationTest {
@@ -41,8 +42,15 @@ public class PersonalAccountAuthorizationTest {
         pap = new PersonalAccountPage(driver);
         hse = new HeaderSharedElements(driver);
         user = new User();
-        driver.get(BASE_URL);
+
+        user.setName(NAME);
+        user.setEmail(EMAIL);
+        user.setPassword(PASSWORD);
+
+        BaseTest.setUp();
         BaseTest.createUser(user);
+
+        driver.get(BASE_URL);
     }
 
     @Test
@@ -107,6 +115,7 @@ public class PersonalAccountAuthorizationTest {
     @After
     public void teardown() {
         driver.quit();
+        user.setAccessToken(BaseTest.acquireToken(user));
         BaseTest.deleteUser(user);
     }
 }

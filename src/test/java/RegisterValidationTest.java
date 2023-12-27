@@ -11,17 +11,13 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
-
-import static constants.URL.LOGIN_PAGE;
 import static constants.URL.REGISTER_PAGE;
+import static object.page.RegisterPage.passwordValidationWebElement;
 
-public class RegisterTest {
+public class RegisterValidationTest {
     private WebDriver driver;
     private User user;
     private RegisterPage rp;
@@ -42,32 +38,31 @@ public class RegisterTest {
         rp = new RegisterPage(driver);
         user = new User();
 
+        BaseTest.setUp();
+
+        //Присваиваем данные, чтобы в дальнейшем удалить юзера, если валидация провалена и создастся экземпляр
         user.setName(faker.name().fullName());
         user.setEmail(faker.internet().emailAddress());
-        user.setPassword(faker.internet().password(6,9));
-
-        BaseTest.setUp();
+        user.setPassword(faker.internet().password(5,6));
 
         driver.get(REGISTER_PAGE);
     }
 
     @Test
-    @DisplayName("Регистрация нового пользователя")
+    @DisplayName("Регистрация нового пользователя с неправильным паролем")
     @Description("Регистрация нового пользователя")
-    public void registerTest() {
+    public void registerInvalidPasswordTest() {
         rp.waitForLoaderDisappear();
         rp.fillRegisterFields(user.getName(), user.getEmail(), user.getPassword());
         rp.clickRegisterButton();
-        new WebDriverWait(driver, Duration.ofMillis(5000)).until(ExpectedConditions.urlContains(LOGIN_PAGE));
-        String actualURL = driver.getCurrentUrl();
-        Assert.assertEquals(LOGIN_PAGE, actualURL);
-    }
+        Assert.assertTrue(passwordValidationWebElement().isDisplayed());
+}
 
     @After
     public void teardown() {
         driver.quit();
 
-        //Условие, чтобы удалить пользователя
+        //Условие для удаления юзера
         String token = BaseTest.acquireToken(user);
         if(token != null) {
             user.setAccessToken(token);

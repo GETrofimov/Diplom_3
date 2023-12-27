@@ -5,11 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0a155ca6-5249-4c86-b59c-ba278a162957" name="Changes" comment="add some tests">
+      <change afterPath="$PROJECT_DIR$/src/test/java/RegisterValidationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/constants/GeckoWebDriverPath.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/api/client/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/client/BaseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/api/client/user/constants/Credentials.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/client/user/constants/Credentials.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/api/client/user/constants/Routes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/client/user/constants/Routes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/object/page/RegisterPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/object/page/RegisterPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/NavigationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/NavigationTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/PersonalAccountAuthorizationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/PersonalAccountAuthorizationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/RegisterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/RegisterTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,11 +62,11 @@
   </component>
   <component name="RunAnythingCache">
     <option name="myCommands">
-      <command value="mvn allure:serve" />
       <command value="mvn clean test" />
+      <command value="mvn allure:serve" />
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.NavigationTest.openPersonalAccountByPersonalAccountButtonTest">
+  <component name="RunManager" selected="JUnit.NavigationTest">
     <configuration name="NavigationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Diplom_3" />
       <option name="PACKAGE_NAME" value="" />
@@ -71,20 +76,50 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="NavigationTest.openPersonalAccountByPersonalAccountButtonTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PersonalAccountAuthorizationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Diplom_3" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="NavigationTest" />
-      <option name="METHOD_NAME" value="openPersonalAccountByPersonalAccountButtonTest" />
+      <option name="MAIN_CLASS_NAME" value="PersonalAccountAuthorizationTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RegisterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Diplom_3" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="RegisterTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RegisterTest.registerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Diplom_3" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="RegisterTest" />
+      <option name="METHOD_NAME" value="registerTest" />
       <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RegisterValidationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Diplom_3" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="RegisterValidationTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.NavigationTest.openPersonalAccountByPersonalAccountButtonTest" />
         <item itemvalue="JUnit.NavigationTest" />
+        <item itemvalue="JUnit.PersonalAccountAuthorizationTest" />
+        <item itemvalue="JUnit.RegisterValidationTest" />
+        <item itemvalue="JUnit.RegisterTest" />
+        <item itemvalue="JUnit.RegisterTest.registerTest" />
       </list>
     </recent_temporary>
   </component>
