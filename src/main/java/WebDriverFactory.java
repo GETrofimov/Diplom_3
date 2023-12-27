@@ -13,7 +13,7 @@ public class WebDriverFactory {
                 options.addArguments();
                 return new ChromeDriver(options);
             case "yandex":
-                System.setProperty("webdriver.yandex.driver", DRIVER_PATH);
+                System.setProperty("webdriver.chrome.driver", DRIVER_PATH);
                 ChromeOptions opt = new ChromeOptions();
                 opt.setBinary(EXE_PATH);
                 return new ChromeDriver(opt);

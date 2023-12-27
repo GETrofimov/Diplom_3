@@ -26,7 +26,7 @@ public class NavigationTest {
     private User user;
 
     @Before
-        public void setUp() {
+        public void setUp(){
         driver = WebDriverFactory.getWebDriver("chrome");
         wait = new WebDriverWait(driver, Duration.ofMillis(3000));
         ss = new SharedSteps(driver);
