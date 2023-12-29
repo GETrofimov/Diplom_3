@@ -40,7 +40,7 @@ public class LoginPage {
     }
 
     @Step("Авторизоваться под тестовым пользователем")
-    public void authorizeTestUser() {
+    public static void authorizeTestUser() {
         setFieldEmail(EMAIL);
         setFieldPassword(PASSWORD);
         clickSignInButton();

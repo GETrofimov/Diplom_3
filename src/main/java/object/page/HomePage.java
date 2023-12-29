@@ -26,6 +26,7 @@ public class HomePage {
     private static By sauceButton = By.xpath("(//span[contains(text(),'Соусы')])[1]");
     private static By bunsButton = By.xpath("(//span[contains(text(),'Булки')])[1]");
     private static By fillingButton = By.xpath("(//span[contains(text(),'Начинки')])[1]");
+    private static By currentTab = By.xpath("//div[@class='tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect']");
 
     @Step("Нажать на кнопку \"Войти в акаунт\"")
     public void clickSignInButton() {
@@ -58,22 +59,8 @@ public class HomePage {
         return driver.findElement(createOrderButtonSelector).isDisplayed();
     }
 
-    public boolean sauceOptionIsVisible() {
-        new WebDriverWait(driver, Duration.ofSeconds(3))
-                .until(ExpectedConditions.visibilityOfElementLocated(sauceOption));
-        return driver.findElement(sauceOption).isDisplayed();
-    }
-
-    public boolean bunsOptionIsVisible() {
-        new WebDriverWait(driver, Duration.ofSeconds(3))
-                .until(ExpectedConditions.visibilityOfElementLocated(bunsOption));
-        return driver.findElement(bunsOption).isDisplayed();
-    }
-
-    public boolean fillingOptionIsVisible() {
-        new WebDriverWait(driver, Duration.ofSeconds(3))
-                .until(ExpectedConditions.visibilityOfElementLocated(fillingOption));
-        return driver.findElement(fillingOption).isDisplayed();
+    public String getCurrentTabText() {
+        return driver.findElement(currentTab).getText();
     }
 
     public static By getSauceOption() {

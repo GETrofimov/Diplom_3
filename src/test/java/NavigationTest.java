@@ -19,7 +19,6 @@ import static constants.URL.*;
 
 public class NavigationTest {
     private WebDriver driver;
-    private WebDriverWait wait;
     private HeaderSharedElements hse;
     private SharedSteps ss;
     private HomePage hp;
@@ -28,11 +27,10 @@ public class NavigationTest {
     @Before
         public void setUp(){
         driver = WebDriverFactory.getWebDriver("chrome");
-        wait = new WebDriverWait(driver, Duration.ofMillis(3000));
-        ss = new SharedSteps(driver);
         hse = new HeaderSharedElements(driver);
         hp = new HomePage(driver);
         user = new User();
+        ss = new SharedSteps(driver);
 
         driver.get(LOGIN_PAGE);
 
@@ -42,7 +40,7 @@ public class NavigationTest {
 
         SharedApiSteps.setUp();
         SharedApiSteps.createUser(user);
-        ss.authorizeTestUser();
+        SharedSteps.authorizeTestUser();
     }
 
     @Test
@@ -50,7 +48,8 @@ public class NavigationTest {
     @Description("Получаем заказы пользователя")
     public void openPersonalAccountByPersonalAccountButtonTest() {
         hse.clickPersonalAccountButton();
-        wait.until(ExpectedConditions.urlContains(PERSONAL_ACCOUNT_PAGE));
+        new WebDriverWait(driver, Duration.ofMillis(3000))
+                .until(ExpectedConditions.urlContains(PERSONAL_ACCOUNT_PAGE));
 
         Assert.assertEquals(PERSONAL_ACCOUNT_PAGE, driver.getCurrentUrl());
     }
@@ -60,9 +59,11 @@ public class NavigationTest {
     @Description("Переход в конструктор из личного кабинета")
     public void openConstructorFromPersonalAccountByConstructorButtonTest() {
         hse.clickPersonalAccountButton();
-        wait.until(ExpectedConditions.urlContains(PERSONAL_ACCOUNT_PAGE));
+        new WebDriverWait(driver, Duration.ofMillis(3000))
+                .until(ExpectedConditions.urlContains(PERSONAL_ACCOUNT_PAGE));
         hse.clickConstructorButton();
-        wait.until(ExpectedConditions.urlContains(BASE_URL));
+        new WebDriverWait(driver, Duration.ofMillis(3000))
+                .until(ExpectedConditions.urlContains(BASE_URL));
 
         Assert.assertEquals(BASE_URL, driver.getCurrentUrl());
     }
@@ -72,9 +73,11 @@ public class NavigationTest {
     @Description("Переход в конструктор из личного кабинета")
     public void openConstructorFromPersonalAccountByLogoTest() {
         hse.clickPersonalAccountButton();
-        wait.until(ExpectedConditions.urlContains(PERSONAL_ACCOUNT_PAGE));
+        new WebDriverWait(driver, Duration.ofMillis(3000))
+                .until(ExpectedConditions.urlContains(PERSONAL_ACCOUNT_PAGE));
         hse.clickLogoButton();
-        wait.until(ExpectedConditions.urlContains(BASE_URL));
+        new WebDriverWait(driver, Duration.ofMillis(3000))
+                .until(ExpectedConditions.urlContains(BASE_URL));
 
         Assert.assertEquals(BASE_URL, driver.getCurrentUrl());
     }
@@ -83,32 +86,39 @@ public class NavigationTest {
     @DisplayName("Переход к разделу \"Соусы\"")
     @Description("Переход к разделу \"Соусы\"")
     public void slideToSauceTest() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(hp.getBunsOption()));
+        new WebDriverWait(driver, Duration.ofMillis(3000))
+                .until(ExpectedConditions.visibilityOfElementLocated(hp.getBunsOption()));
         hp.clickSauceButton();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(hp.getSauceOption()));
-        Assert.assertTrue(hp.sauceOptionIsVisible());
+        new WebDriverWait(driver, Duration.ofMillis(3000))
+                .until(ExpectedConditions.visibilityOfElementLocated(hp.getSauceOption()));
+        Assert.assertEquals("Соусы", hp.getCurrentTabText());
     }
 
     @Test
     @DisplayName("Переход к разделу \"Начинки\"")
     @Description("Переход к разделу \"Начинки\"")
     public void slideToFillingTest() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(hp.getBunsOption()));
+        new WebDriverWait(driver, Duration.ofMillis(3000))
+                .until(ExpectedConditions.visibilityOfElementLocated(hp.getBunsOption()));
         hp.clickFillingButton();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(hp.getFillingOption()));
-        Assert.assertTrue(hp.fillingOptionIsVisible());
+        new WebDriverWait(driver, Duration.ofMillis(3000))
+                .until(ExpectedConditions.visibilityOfElementLocated(hp.getFillingOption()));
+        Assert.assertEquals("Начинки", hp.getCurrentTabText());
     }
 
     @Test
     @DisplayName("Переход к разделу \"Булки\"")
     @Description("Переход к разделу \"Булки\"")
     public void slideToBunsTest() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(hp.getBunsOption()));
+        new WebDriverWait(driver, Duration.ofMillis(3000))
+                .until(ExpectedConditions.visibilityOfElementLocated(hp.getBunsOption()));
         hp.clickSauceButton();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(hp.getSauceOption()));
+        new WebDriverWait(driver, Duration.ofMillis(3000))
+                .until(ExpectedConditions.visibilityOfElementLocated(hp.getSauceOption()));
         hp.clickBunsButton();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(hp.getBunsOption()));
-        Assert.assertTrue(hp.bunsOptionIsVisible());
+        new WebDriverWait(driver, Duration.ofMillis(3000))
+                .until(ExpectedConditions.visibilityOfElementLocated(hp.getBunsOption()));
+        Assert.assertEquals("Булки", hp.getCurrentTabText());
     }
 
 
