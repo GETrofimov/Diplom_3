@@ -10,7 +10,6 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import steps.SharedSteps;
 
 import java.time.Duration;
 
@@ -20,7 +19,7 @@ import static constants.URL.*;
 public class NavigationTest {
     private WebDriver driver;
     private HeaderSharedElements hse;
-    private SharedSteps ss;
+    private LoginPage lp;
     private HomePage hp;
     private User user;
 
@@ -29,8 +28,8 @@ public class NavigationTest {
         driver = WebDriverFactory.getWebDriver("chrome");
         hse = new HeaderSharedElements(driver);
         hp = new HomePage(driver);
+        lp = new LoginPage(driver);
         user = new User();
-        ss = new SharedSteps(driver);
 
         driver.get(LOGIN_PAGE);
 
@@ -40,7 +39,7 @@ public class NavigationTest {
 
         SharedApiSteps.setUp();
         SharedApiSteps.createUser(user);
-        SharedSteps.authorizeTestUser();
+        LoginPage.authorizeTestUser(driver);
     }
 
     @Test
@@ -87,10 +86,10 @@ public class NavigationTest {
     @Description("Переход к разделу \"Соусы\"")
     public void slideToSauceTest() {
         new WebDriverWait(driver, Duration.ofMillis(3000))
-                .until(ExpectedConditions.visibilityOfElementLocated(hp.getBunsOption()));
+                .until(ExpectedConditions.visibilityOfElementLocated(HomePage.getBunsOption()));
         hp.clickSauceButton();
         new WebDriverWait(driver, Duration.ofMillis(3000))
-                .until(ExpectedConditions.visibilityOfElementLocated(hp.getSauceOption()));
+                .until(ExpectedConditions.visibilityOfElementLocated(HomePage.getSauceOption()));
         Assert.assertEquals("Соусы", hp.getCurrentTabText());
     }
 
@@ -99,10 +98,10 @@ public class NavigationTest {
     @Description("Переход к разделу \"Начинки\"")
     public void slideToFillingTest() {
         new WebDriverWait(driver, Duration.ofMillis(3000))
-                .until(ExpectedConditions.visibilityOfElementLocated(hp.getBunsOption()));
+                .until(ExpectedConditions.visibilityOfElementLocated(HomePage.getBunsOption()));
         hp.clickFillingButton();
         new WebDriverWait(driver, Duration.ofMillis(3000))
-                .until(ExpectedConditions.visibilityOfElementLocated(hp.getFillingOption()));
+                .until(ExpectedConditions.visibilityOfElementLocated(HomePage.getFillingOption()));
         Assert.assertEquals("Начинки", hp.getCurrentTabText());
     }
 
@@ -111,13 +110,13 @@ public class NavigationTest {
     @Description("Переход к разделу \"Булки\"")
     public void slideToBunsTest() {
         new WebDriverWait(driver, Duration.ofMillis(3000))
-                .until(ExpectedConditions.visibilityOfElementLocated(hp.getBunsOption()));
+                .until(ExpectedConditions.visibilityOfElementLocated(HomePage.getBunsOption()));
         hp.clickSauceButton();
         new WebDriverWait(driver, Duration.ofMillis(3000))
-                .until(ExpectedConditions.visibilityOfElementLocated(hp.getSauceOption()));
+                .until(ExpectedConditions.visibilityOfElementLocated(HomePage.getSauceOption()));
         hp.clickBunsButton();
         new WebDriverWait(driver, Duration.ofMillis(3000))
-                .until(ExpectedConditions.visibilityOfElementLocated(hp.getBunsOption()));
+                .until(ExpectedConditions.visibilityOfElementLocated(HomePage.getBunsOption()));
         Assert.assertEquals("Булки", hp.getCurrentTabText());
     }
 

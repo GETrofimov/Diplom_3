@@ -54,7 +54,7 @@ public class PersonalAccountAuthorizationTest {
     @Description("Авторизация по кнопке \"Войти в аккаунт\"")
     public void authorizeBySignInButtonTest() {
         hp.clickSignInButton();
-        lp.authorizeTestUser();
+        lp.authorizeTestUser(driver);
 
         Assert.assertTrue(hp.createOrderButtonIsVisible());
     }
@@ -64,7 +64,7 @@ public class PersonalAccountAuthorizationTest {
     @Description("Авторизация по кнопке \"Личный кабинет\"")
     public void authorizeByPersonalAccountButtonTest() {
         hp.clickPersonalAccountButton();
-        lp.authorizeTestUser();
+        lp.authorizeTestUser(driver);
 
         Assert.assertTrue(hp.createOrderButtonIsVisible());
     }
@@ -76,7 +76,7 @@ public class PersonalAccountAuthorizationTest {
         driver.get(REGISTER_PAGE);
 
         rp.clickSignInButton();
-        lp.authorizeTestUser();
+        lp.authorizeTestUser(driver);
 
         Assert.assertTrue(hp.createOrderButtonIsVisible());
     }
@@ -88,7 +88,7 @@ public class PersonalAccountAuthorizationTest {
         driver.get(FORGOT_PASSWORD_PAGE);
 
         fsp.clickSignInButton();
-        lp.authorizeTestUser();
+        lp.authorizeTestUser(driver);
 
         Assert.assertTrue(hp.createOrderButtonIsVisible());
     }
@@ -99,7 +99,7 @@ public class PersonalAccountAuthorizationTest {
     public void logoutTest() {
 
         hp.clickPersonalAccountButton();
-        lp.authorizeTestUser();
+        lp.authorizeTestUser(driver);
         hse.clickPersonalAccountButton();
         wait.until(ExpectedConditions.urlContains(PERSONAL_ACCOUNT_PAGE));
         pap.clickLogoutButton();

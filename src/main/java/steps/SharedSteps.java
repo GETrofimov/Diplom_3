@@ -24,12 +24,4 @@ public class SharedSteps {
         WebDriver driver = new ChromeDriver(options);
         driver.get(BASE_URL);
     }
-
-    @Step("Авторизация тестового пользователя")
-    public static void authorizeTestUser() {
-        LoginPage lp = new LoginPage(driver);
-        driver.findElement(lp.getFieldEmail()).sendKeys(EMAIL);
-        driver.findElement(lp.getFieldPassword()).sendKeys(PASSWORD);
-        driver.findElement(lp.getSignInButton()).click();
-    }
 }

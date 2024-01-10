@@ -38,15 +38,6 @@ public class LoginPage {
     public static void setFieldPassword(String password) {
         driver.findElement(fieldPassword).sendKeys(password);
     }
-
-    @Step("Авторизоваться под тестовым пользователем")
-    public static void authorizeTestUser() {
-        setFieldEmail(EMAIL);
-        setFieldPassword(PASSWORD);
-        clickSignInButton();
-    }
-
-
     public static By getFieldEmail() {
         return fieldEmail;
     }
@@ -57,5 +48,11 @@ public class LoginPage {
 
     public static By getSignInButton() {
         return signInButton;
+    }
+    @Step("Авторизация тестового пользователя")
+    public static void authorizeTestUser(WebDriver driver) {
+        driver.findElement(getFieldEmail()).sendKeys(EMAIL);
+        driver.findElement(getFieldPassword()).sendKeys(PASSWORD);
+        driver.findElement(getSignInButton()).click();
     }
 }
