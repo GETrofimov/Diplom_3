@@ -19,7 +19,6 @@ import static constants.URL.*;
 public class NavigationTest {
     private WebDriver driver;
     private HeaderSharedElements hse;
-    private LoginPage lp;
     private HomePage hp;
     private User user;
 
@@ -28,7 +27,6 @@ public class NavigationTest {
         driver = WebDriverFactory.getWebDriver("chrome");
         hse = new HeaderSharedElements(driver);
         hp = new HomePage(driver);
-        lp = new LoginPage(driver);
         user = new User();
 
         driver.get(LOGIN_PAGE);
@@ -87,7 +85,7 @@ public class NavigationTest {
     public void slideToSauceTest() {
         new WebDriverWait(driver, Duration.ofMillis(3000))
                 .until(ExpectedConditions.visibilityOfElementLocated(HomePage.getBunsOption()));
-        hp.clickSauceButton();
+         hp.clickSauceButton();
         new WebDriverWait(driver, Duration.ofMillis(3000))
                 .until(ExpectedConditions.visibilityOfElementLocated(HomePage.getSauceOption()));
         Assert.assertEquals("Соусы", hp.getCurrentTabText());
